@@ -1,0 +1,25 @@
+{
+  "purpose": "Help a manufacturing AI team decide whether a weekly technical update contains enough evidence for coordination and risk review.",
+  "minimum_evidence": [
+    "current state",
+    "a Jira, PR, commit, or dashboard reference",
+    "impact or remaining risk",
+    "an owned next action with a review date"
+  ],
+  "allowed_states": [
+    "in_progress",
+    "completed",
+    "blocked"
+  ],
+  "unknown_behavior": "If a claim has no verifiable reference, return unknown and ask for a safe reference. Never infer success from tone.",
+  "privacy_boundary": "Do not collect hours, attendance, emotion, customer identifiers, or credentials. Redact reports and delete raw answers according to the team retention policy.",
+  "prohibited_inferences": [
+    "productivity",
+    "effort",
+    "attendance",
+    "employee_quality"
+  ],
+  "action_boundary": "The tool may draft a comment or follow-up question. Any Jira mutation requires human approval and a read-back receipt.",
+  "owner": "Manufacturing AI platform team",
+  "review_after": "2026-10-01"
+}

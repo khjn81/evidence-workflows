@@ -1,0 +1,28 @@
+{
+  "id": "P5-in-progress-junior-researcher",
+  "persona": "아직 결론이 없는 주니어 연구자",
+  "policy": "data-analysis-experiment.json",
+  "artifact": {
+    "phase": "in_progress",
+    "experiment_question": "새 anomaly feature가 기존 rule보다 조기 경보를 제공하는가?",
+    "hypothesis": "false positive를 늘리지 않고 평균 15분 먼저 경보할 수 있다.",
+    "data_scope": "파일럿 라인 B의 2026-07-15~2026-07-22 이벤트와 실제 점검 기록",
+    "method": "시간 순서 split으로 기존 rule과 신규 feature의 lead time 및 false positive 비교",
+    "evidence": "https://example.invalid/notebooks/anomaly-feature-v2",
+    "next_experiment": {
+      "action": "점검 기록 6건을 추가 라벨링하고 false positive를 재계산",
+      "owner": "Applied Research",
+      "due_date": "2026-07-29"
+    }
+  },
+  "expected": {
+    "status": "ready",
+    "check_status": {
+      "result-required-when-complete": "not_applicable",
+      "evidence-reference": "pass",
+      "no-sensitive-data": "pass"
+    },
+    "progress_safe": true,
+    "progress_check": "result-required-when-complete"
+  }
+}

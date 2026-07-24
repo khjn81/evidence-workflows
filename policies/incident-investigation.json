@@ -1,0 +1,152 @@
+{
+  "api_version": "evidence-workflows/v1",
+  "kind": "Policy",
+  "metadata": {
+    "id": "operations.incident-investigation",
+    "version": "0.1.0",
+    "title": "Incident investigation",
+    "status": "experimental"
+  },
+  "spec": {
+    "purpose": "Make incident impact, evidence, mitigation, and the next safety action reviewable while preventing secrets and direct identifiers from entering the report.",
+    "artifact_type": "incident_investigation",
+    "required_fields": [
+      "summary",
+      "impact",
+      "evidence",
+      "mitigation",
+      "next_action",
+      "next_action.owner",
+      "next_action.due_date"
+    ],
+    "questions": [
+      {
+        "id": "summary",
+        "field": "summary",
+        "prompt": "무슨 증상이 언제 관찰되었나요?",
+        "required": true
+      },
+      {
+        "id": "impact",
+        "field": "impact",
+        "prompt": "영향 범위와 현재 사용자/시스템 영향은 무엇인가요?",
+        "required": true
+      },
+      {
+        "id": "evidence",
+        "field": "evidence",
+        "prompt": "로그, 모니터링, 이슈, 재현 절차 등 안전한 근거 참조를 남겨 주세요.",
+        "required": true
+      },
+      {
+        "id": "mitigation",
+        "field": "mitigation",
+        "prompt": "현재 적용한 완화 조치와 아직 남은 위험은 무엇인가요?",
+        "required": true
+      },
+      {
+        "id": "next-action",
+        "field": "next_action.action",
+        "prompt": "재발 방지 또는 다음 안전 조치를 적어 주세요.",
+        "required": true
+      },
+      {
+        "id": "next-action-owner",
+        "field": "next_action.owner",
+        "prompt": "다음 안전 조치의 책임자 또는 팀을 적어 주세요.",
+        "required": true
+      },
+      {
+        "id": "next-action-due",
+        "field": "next_action.due_date",
+        "prompt": "다음 안전 조치의 확인 예정일을 ISO 날짜로 적어 주세요.",
+        "required": true
+      },
+      {
+        "id": "safe-evidence",
+        "field": "evidence",
+        "prompt": "고객 식별자와 credential을 제거한 근거 참조로 다시 남겨 주세요.",
+        "required": false
+      }
+    ],
+    "checks": [
+      {
+        "id": "summary-present",
+        "type": "present",
+        "field": "summary",
+        "blocking": true,
+        "severity": "error",
+        "message": "장애 요약이 필요합니다.",
+        "question_id": "summary"
+      },
+      {
+        "id": "impact-present",
+        "type": "present",
+        "field": "impact",
+        "blocking": true,
+        "severity": "error",
+        "message": "장애 영향 범위가 필요합니다.",
+        "question_id": "impact"
+      },
+      {
+        "id": "evidence-reference",
+        "type": "evidence_reference",
+        "field": "evidence",
+        "blocking": true,
+        "severity": "error",
+        "message": "안전한 로그, 모니터링, 이슈, 또는 재현 근거가 필요합니다.",
+        "question_id": "evidence"
+      },
+      {
+        "id": "mitigation-present",
+        "type": "present",
+        "field": "mitigation",
+        "blocking": true,
+        "severity": "error",
+        "message": "현재 완화 조치가 필요합니다.",
+        "question_id": "mitigation"
+      },
+      {
+        "id": "next-action-present",
+        "type": "present",
+        "field": "next_action.action",
+        "blocking": true,
+        "severity": "error",
+        "message": "다음 안전 조치가 필요합니다.",
+        "question_id": "next-action"
+      },
+      {
+        "id": "next-action-owner-present",
+        "type": "present",
+        "field": "next_action.owner",
+        "blocking": true,
+        "severity": "error",
+        "message": "다음 안전 조치의 책임자가 필요합니다.",
+        "question_id": "next-action-owner"
+      },
+      {
+        "id": "next-action-due-date",
+        "type": "date_reference",
+        "field": "next_action.due_date",
+        "blocking": true,
+        "severity": "error",
+        "message": "다음 안전 조치의 확인 예정일이 ISO 날짜로 필요합니다.",
+        "question_id": "next-action-due"
+      },
+      {
+        "id": "no-sensitive-data",
+        "type": "no_sensitive_data",
+        "field": "*",
+        "blocking": true,
+        "severity": "error",
+        "message": "장애 artifact에는 고객 식별자와 credential이 없어야 합니다.",
+        "question_id": "safe-evidence"
+      }
+    ],
+    "prohibited_inferences": [
+      "blame",
+      "effort",
+      "employee_quality"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": "0.1.0",
+  "criteria": [
+    "status_matches",
+    "check_contract",
+    "actionable_questions",
+    "no_sensitive_leak",
+    "uncertainty_is_honest",
+    "redaction_safety",
+    "progress_is_not_failure",
+    "no_hr_scoring"
+  ],
+  "note": "Synthetic evaluator checks are product-quality fixtures, not personnel scoring."
+}

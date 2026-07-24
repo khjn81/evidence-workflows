@@ -1,0 +1,30 @@
+{
+  "id": "P1-careful-data-analyst",
+  "persona": "꼼꼼한 데이터 분석가",
+  "policy": "data-analysis-experiment.json",
+  "artifact": {
+    "phase": "completed",
+    "experiment_question": "라인 A의 센서 결측이 특정 교대조에 집중되는가?",
+    "hypothesis": "야간 교대의 네트워크 재시작 직후 결측률이 높을 것이다.",
+    "data_scope": "2026-07-01~2026-07-21, 라인 A 센서 18개, 재시작 10분 구간 제외 여부를 별도 비교",
+    "method": "교대조별 결측률과 재시작 이벤트를 join하고 95% bootstrap 구간을 비교",
+    "evidence": [
+      "https://example.invalid/analysis/line-a-missingness",
+      "AN-184"
+    ],
+    "result": "야간 결측률 중앙값이 주간보다 3.1%p 높았지만 표본 수가 작아 원인으로 확정하지 않았다.",
+    "next_experiment": {
+      "action": "네트워크 재시작 전후 30분 구간으로 민감도 분석을 재실행",
+      "owner": "Data Platform",
+      "due_date": "2026-07-31"
+    }
+  },
+  "expected": {
+    "status": "ready",
+    "check_status": {
+      "evidence-reference": "pass",
+      "result-required-when-complete": "pass",
+      "no-sensitive-data": "pass"
+    }
+  }
+}

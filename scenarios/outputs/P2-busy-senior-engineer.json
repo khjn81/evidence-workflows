@@ -1,0 +1,171 @@
+{
+  "case": {
+    "id": "P2-busy-senior-engineer",
+    "persona": "시간이 부족한 시니어 엔지니어"
+  },
+  "evaluation": {
+    "actual_status": "needs_clarification",
+    "case_id": "P2-busy-senior-engineer",
+    "criteria": {
+      "actionable_questions": {
+        "note": "every follow-up question has a field, prompt, and reason",
+        "passed": true
+      },
+      "check_contract": {
+        "note": "required check statuses match the case contract",
+        "passed": true
+      },
+      "no_hr_scoring": {
+        "note": "output contains no productivity or attendance score",
+        "passed": true
+      },
+      "no_sensitive_leak": {
+        "note": "no email/token pattern appears in the generated result",
+        "passed": true
+      },
+      "progress_is_not_failure": {
+        "note": "in-progress work is explicit and not forced into a completed result",
+        "passed": true
+      },
+      "redaction_safety": {
+        "note": "sensitive input was redacted before output",
+        "passed": true
+      },
+      "status_matches": {
+        "note": "expected needs_clarification, got needs_clarification",
+        "passed": true
+      },
+      "uncertainty_is_honest": {
+        "note": "unverified claims remain unknown",
+        "passed": true
+      }
+    },
+    "expected_status": "needs_clarification",
+    "overall_pass": true,
+    "persona": "시간이 부족한 시니어 엔지니어",
+    "score": 100
+  },
+  "result": {
+    "artifact": {
+      "current_state": "알람 noise를 줄이기 위해 aggregation rule을 손봤다.",
+      "impact_or_risk": "오탐은 줄 수 있지만 신규 장애를 놓칠 가능성을 다음 주에 확인해야 한다.",
+      "next_action": {
+        "action": "새 rule을 staging에서 검증"
+      },
+      "period": "2026-07-20 ~ 2026-07-24"
+    },
+    "checks": [
+      {
+        "blocking": true,
+        "field": "period",
+        "id": "period-present",
+        "message": "업데이트 기간이 필요합니다.",
+        "question_id": "period",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "current_state",
+        "id": "current-state-present",
+        "message": "현재 상태가 필요합니다.",
+        "question_id": "current-state",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "evidence",
+        "id": "evidence-reference",
+        "message": "검증 가능한 URL, Jira key, PR/커밋 참조가 필요합니다.",
+        "question_id": "evidence",
+        "severity": "error",
+        "status": "fail",
+        "type": "evidence_reference"
+      },
+      {
+        "blocking": true,
+        "field": "impact_or_risk",
+        "id": "impact-or-risk-present",
+        "message": "영향 또는 리스크가 필요합니다.",
+        "question_id": "impact-or-risk",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "next_action.action",
+        "id": "next-action-present",
+        "message": "다음 행동이 필요합니다.",
+        "question_id": "next-action",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "next_action.owner",
+        "id": "next-action-owner-present",
+        "message": "다음 행동의 책임자가 필요합니다.",
+        "question_id": "next-action-owner",
+        "severity": "error",
+        "status": "fail",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "next_action.due_date",
+        "id": "next-action-due-date",
+        "message": "다음 행동의 확인 예정일이 ISO 날짜로 필요합니다.",
+        "question_id": "next-action-due",
+        "severity": "error",
+        "status": "fail",
+        "type": "date_reference"
+      },
+      {
+        "blocking": true,
+        "field": "*",
+        "id": "no-sensitive-data",
+        "message": "개인정보와 credential은 artifact에서 제거해야 합니다.",
+        "question_id": "safe-evidence",
+        "severity": "error",
+        "status": "pass",
+        "type": "no_sensitive_data"
+      }
+    ],
+    "engine_version": "0.1.0",
+    "policy_digest": "5e976f8058d4583f0f445c7dbb49106342b9a175de9153eada7dd56972ee2f9b",
+    "policy_id": "reporting.technical-weekly-update",
+    "policy_version": "0.1.0",
+    "questions": [
+      {
+        "field": "evidence",
+        "id": "evidence",
+        "prompt": "주장을 확인할 수 있는 Jira 이슈, PR, 커밋, 대시보드 URL 중 하나를 남겨 주세요.",
+        "reason": "검증 가능한 URL, Jira key, PR/커밋 참조가 필요합니다.",
+        "required": true
+      },
+      {
+        "field": "next_action.owner",
+        "id": "next-action-owner",
+        "prompt": "다음 행동의 책임자 또는 팀을 적어 주세요.",
+        "reason": "다음 행동의 책임자가 필요합니다.",
+        "required": true
+      },
+      {
+        "field": "next_action.due_date",
+        "id": "next-action-due",
+        "prompt": "다음 행동의 확인 예정일을 ISO 날짜로 적어 주세요.",
+        "reason": "다음 행동의 확인 예정일이 ISO 날짜로 필요합니다.",
+        "required": true
+      }
+    ],
+    "raw_input_retained": false,
+    "redactions": [],
+    "status": "needs_clarification",
+    "warnings": []
+  }
+}

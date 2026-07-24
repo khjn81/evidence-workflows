@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evidence-workflows"
+version = "0.1.0"
+description = "Deterministic, privacy-aware policy interviews for evidence-ready work updates"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "khjn81" }]
+dependencies = []
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Office/Business",
+]
+
+[project.scripts]
+evidence-workflows = "evidence_workflows.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,222 @@
+{
+  "average_score": 100.0,
+  "case_count": 5,
+  "cases": [
+    {
+      "actual_status": "ready",
+      "case_id": "P1-careful-data-analyst",
+      "criteria": {
+        "actionable_questions": {
+          "note": "every follow-up question has a field, prompt, and reason",
+          "passed": true
+        },
+        "check_contract": {
+          "note": "required check statuses match the case contract",
+          "passed": true
+        },
+        "no_hr_scoring": {
+          "note": "output contains no productivity or attendance score",
+          "passed": true
+        },
+        "no_sensitive_leak": {
+          "note": "no email/token pattern appears in the generated result",
+          "passed": true
+        },
+        "progress_is_not_failure": {
+          "note": "in-progress work is explicit and not forced into a completed result",
+          "passed": true
+        },
+        "redaction_safety": {
+          "note": "sensitive input was redacted before output",
+          "passed": true
+        },
+        "status_matches": {
+          "note": "expected ready, got ready",
+          "passed": true
+        },
+        "uncertainty_is_honest": {
+          "note": "unverified claims remain unknown",
+          "passed": true
+        }
+      },
+      "expected_status": "ready",
+      "overall_pass": true,
+      "persona": "꼼꼼한 데이터 분석가",
+      "score": 100
+    },
+    {
+      "actual_status": "needs_clarification",
+      "case_id": "P2-busy-senior-engineer",
+      "criteria": {
+        "actionable_questions": {
+          "note": "every follow-up question has a field, prompt, and reason",
+          "passed": true
+        },
+        "check_contract": {
+          "note": "required check statuses match the case contract",
+          "passed": true
+        },
+        "no_hr_scoring": {
+          "note": "output contains no productivity or attendance score",
+          "passed": true
+        },
+        "no_sensitive_leak": {
+          "note": "no email/token pattern appears in the generated result",
+          "passed": true
+        },
+        "progress_is_not_failure": {
+          "note": "in-progress work is explicit and not forced into a completed result",
+          "passed": true
+        },
+        "redaction_safety": {
+          "note": "sensitive input was redacted before output",
+          "passed": true
+        },
+        "status_matches": {
+          "note": "expected needs_clarification, got needs_clarification",
+          "passed": true
+        },
+        "uncertainty_is_honest": {
+          "note": "unverified claims remain unknown",
+          "passed": true
+        }
+      },
+      "expected_status": "needs_clarification",
+      "overall_pass": true,
+      "persona": "시간이 부족한 시니어 엔지니어",
+      "score": 100
+    },
+    {
+      "actual_status": "unable_to_determine",
+      "case_id": "P3-optimistic-manager",
+      "criteria": {
+        "actionable_questions": {
+          "note": "every follow-up question has a field, prompt, and reason",
+          "passed": true
+        },
+        "check_contract": {
+          "note": "required check statuses match the case contract",
+          "passed": true
+        },
+        "no_hr_scoring": {
+          "note": "output contains no productivity or attendance score",
+          "passed": true
+        },
+        "no_sensitive_leak": {
+          "note": "no email/token pattern appears in the generated result",
+          "passed": true
+        },
+        "progress_is_not_failure": {
+          "note": "in-progress work is explicit and not forced into a completed result",
+          "passed": true
+        },
+        "redaction_safety": {
+          "note": "sensitive input was redacted before output",
+          "passed": true
+        },
+        "status_matches": {
+          "note": "expected unable_to_determine, got unable_to_determine",
+          "passed": true
+        },
+        "uncertainty_is_honest": {
+          "note": "unverified claims remain unknown",
+          "passed": true
+        }
+      },
+      "expected_status": "unable_to_determine",
+      "overall_pass": true,
+      "persona": "성과를 크게 말하는 리더",
+      "score": 100
+    },
+    {
+      "actual_status": "needs_clarification",
+      "case_id": "P4-sensitive-incident-responder",
+      "criteria": {
+        "actionable_questions": {
+          "note": "every follow-up question has a field, prompt, and reason",
+          "passed": true
+        },
+        "check_contract": {
+          "note": "required check statuses match the case contract",
+          "passed": true
+        },
+        "no_hr_scoring": {
+          "note": "output contains no productivity or attendance score",
+          "passed": true
+        },
+        "no_sensitive_leak": {
+          "note": "no email/token pattern appears in the generated result",
+          "passed": true
+        },
+        "progress_is_not_failure": {
+          "note": "in-progress work is explicit and not forced into a completed result",
+          "passed": true
+        },
+        "redaction_safety": {
+          "note": "sensitive input was redacted before output",
+          "passed": true
+        },
+        "status_matches": {
+          "note": "expected needs_clarification, got needs_clarification",
+          "passed": true
+        },
+        "uncertainty_is_honest": {
+          "note": "unverified claims remain unknown",
+          "passed": true
+        }
+      },
+      "expected_status": "needs_clarification",
+      "overall_pass": true,
+      "persona": "민감정보를 붙여 넣은 장애 대응자",
+      "score": 100
+    },
+    {
+      "actual_status": "ready",
+      "case_id": "P5-in-progress-junior-researcher",
+      "criteria": {
+        "actionable_questions": {
+          "note": "every follow-up question has a field, prompt, and reason",
+          "passed": true
+        },
+        "check_contract": {
+          "note": "required check statuses match the case contract",
+          "passed": true
+        },
+        "no_hr_scoring": {
+          "note": "output contains no productivity or attendance score",
+          "passed": true
+        },
+        "no_sensitive_leak": {
+          "note": "no email/token pattern appears in the generated result",
+          "passed": true
+        },
+        "progress_is_not_failure": {
+          "note": "in-progress work is explicit and not forced into a completed result",
+          "passed": true
+        },
+        "redaction_safety": {
+          "note": "sensitive input was redacted before output",
+          "passed": true
+        },
+        "status_matches": {
+          "note": "expected ready, got ready",
+          "passed": true
+        },
+        "uncertainty_is_honest": {
+          "note": "unverified claims remain unknown",
+          "passed": true
+        }
+      },
+      "expected_status": "ready",
+      "overall_pass": true,
+      "persona": "아직 결론이 없는 주니어 연구자",
+      "score": 100
+    }
+  ],
+  "interpretation": [
+    "A pass means the deterministic engine met the synthetic case contract; it does not validate organizational usefulness.",
+    "A ready result still requires a human to decide whether the artifact belongs in the target workflow.",
+    "unknown is intentionally preserved when a claim lacks a verifiable reference."
+  ],
+  "passed_count": 5
+}

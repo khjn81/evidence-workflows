@@ -1,0 +1,180 @@
+{
+  "case": {
+    "id": "P4-sensitive-incident-responder",
+    "persona": "민감정보를 붙여 넣은 장애 대응자"
+  },
+  "evaluation": {
+    "actual_status": "needs_clarification",
+    "case_id": "P4-sensitive-incident-responder",
+    "criteria": {
+      "actionable_questions": {
+        "note": "every follow-up question has a field, prompt, and reason",
+        "passed": true
+      },
+      "check_contract": {
+        "note": "required check statuses match the case contract",
+        "passed": true
+      },
+      "no_hr_scoring": {
+        "note": "output contains no productivity or attendance score",
+        "passed": true
+      },
+      "no_sensitive_leak": {
+        "note": "no email/token pattern appears in the generated result",
+        "passed": true
+      },
+      "progress_is_not_failure": {
+        "note": "in-progress work is explicit and not forced into a completed result",
+        "passed": true
+      },
+      "redaction_safety": {
+        "note": "sensitive input was redacted before output",
+        "passed": true
+      },
+      "status_matches": {
+        "note": "expected needs_clarification, got needs_clarification",
+        "passed": true
+      },
+      "uncertainty_is_honest": {
+        "note": "unverified claims remain unknown",
+        "passed": true
+      }
+    },
+    "expected_status": "needs_clarification",
+    "overall_pass": true,
+    "persona": "민감정보를 붙여 넣은 장애 대응자",
+    "score": 100
+  },
+  "result": {
+    "artifact": {
+      "api_token": "<redacted:sensitive_field>",
+      "customer_email": "<redacted:email>",
+      "evidence": [
+        "https://example.invalid/incidents/INC-77",
+        "INC-77"
+      ],
+      "impact": "라인 A 작업 지시 조회 p95가 2.4초에서 9.8초로 증가했으며 영향 설비는 12대다.",
+      "mitigation": "느린 query를 feature flag로 우회하고 read replica를 증설했다.",
+      "next_action": {
+        "action": "PII가 제거된 재현 로그로 query plan을 검토",
+        "due_date": "2026-07-25",
+        "owner": "SRE"
+      },
+      "summary": "2026-07-23 14:10부터 작업 지연이 증가했고 <redacted:email> 계정에서도 재현되었다."
+    },
+    "checks": [
+      {
+        "blocking": true,
+        "field": "summary",
+        "id": "summary-present",
+        "message": "장애 요약이 필요합니다.",
+        "question_id": "summary",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "impact",
+        "id": "impact-present",
+        "message": "장애 영향 범위가 필요합니다.",
+        "question_id": "impact",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "evidence",
+        "id": "evidence-reference",
+        "message": "안전한 로그, 모니터링, 이슈, 또는 재현 근거가 필요합니다.",
+        "question_id": "evidence",
+        "severity": "error",
+        "status": "pass",
+        "type": "evidence_reference"
+      },
+      {
+        "blocking": true,
+        "field": "mitigation",
+        "id": "mitigation-present",
+        "message": "현재 완화 조치가 필요합니다.",
+        "question_id": "mitigation",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "next_action.action",
+        "id": "next-action-present",
+        "message": "다음 안전 조치가 필요합니다.",
+        "question_id": "next-action",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "next_action.owner",
+        "id": "next-action-owner-present",
+        "message": "다음 안전 조치의 책임자가 필요합니다.",
+        "question_id": "next-action-owner",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "next_action.due_date",
+        "id": "next-action-due-date",
+        "message": "다음 안전 조치의 확인 예정일이 ISO 날짜로 필요합니다.",
+        "question_id": "next-action-due",
+        "severity": "error",
+        "status": "pass",
+        "type": "date_reference"
+      },
+      {
+        "blocking": true,
+        "field": "*",
+        "id": "no-sensitive-data",
+        "message": "장애 artifact에는 고객 식별자와 credential이 없어야 합니다.",
+        "question_id": "safe-evidence",
+        "severity": "error",
+        "status": "fail",
+        "type": "no_sensitive_data"
+      }
+    ],
+    "engine_version": "0.1.0",
+    "policy_digest": "d5fc3867ae3fb0b4db719e68af1f1620be9c769a93484518bc6a56bf8b98c04e",
+    "policy_id": "operations.incident-investigation",
+    "policy_version": "0.1.0",
+    "questions": [
+      {
+        "field": "evidence",
+        "id": "safe-evidence",
+        "prompt": "고객 식별자와 credential을 제거한 근거 참조로 다시 남겨 주세요.",
+        "reason": "장애 artifact에는 고객 식별자와 credential이 없어야 합니다.",
+        "required": false
+      }
+    ],
+    "raw_input_retained": false,
+    "redactions": [
+      {
+        "kind": "email",
+        "path": "summary"
+      },
+      {
+        "kind": "email",
+        "path": "customer_email"
+      },
+      {
+        "kind": "sensitive_field",
+        "path": "api_token"
+      }
+    ],
+    "status": "needs_clarification",
+    "warnings": [
+      "민감정보 패턴은 결과 출력에서 자동 마스킹되었습니다. 원문을 외부 시스템에 전송하지 마세요."
+    ]
+  }
+}

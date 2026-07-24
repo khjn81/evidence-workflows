@@ -1,0 +1,22 @@
+{
+  "id": "P3-optimistic-manager",
+  "persona": "성과를 크게 말하는 리더",
+  "policy": "presentation-brief.json",
+  "artifact": {
+    "decision": "다음 분기 현장 AI 파일럿 예산을 승인할지 결정",
+    "audience": "사업부 리더와 재무 파트너",
+    "key_claims": [
+      "현장 사용자 반응이 매우 좋았다.",
+      "분석 속도가 크게 개선되었다."
+    ],
+    "evidence": "사용자들이 좋아했고 전보다 빨라진 것 같다.",
+    "ask": "3개 사이트로 파일럿을 확대할 예산 승인"
+  },
+  "expected": {
+    "status": "unable_to_determine",
+    "check_status": {
+      "evidence-reference": "unknown"
+    },
+    "uncertainty_honest": true
+  }
+}

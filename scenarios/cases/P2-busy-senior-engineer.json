@@ -1,0 +1,21 @@
+{
+  "id": "P2-busy-senior-engineer",
+  "persona": "시간이 부족한 시니어 엔지니어",
+  "policy": "technical-weekly-update.json",
+  "artifact": {
+    "period": "2026-07-20 ~ 2026-07-24",
+    "current_state": "알람 noise를 줄이기 위해 aggregation rule을 손봤다.",
+    "impact_or_risk": "오탐은 줄 수 있지만 신규 장애를 놓칠 가능성을 다음 주에 확인해야 한다.",
+    "next_action": {
+      "action": "새 rule을 staging에서 검증"
+    }
+  },
+  "expected": {
+    "status": "needs_clarification",
+    "check_status": {
+      "evidence-reference": "fail",
+      "next-action-owner-present": "fail",
+      "next-action-due-date": "fail"
+    }
+  }
+}

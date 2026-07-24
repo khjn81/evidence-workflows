@@ -1,0 +1,153 @@
+{
+  "api_version": "evidence-workflows/v1",
+  "kind": "Policy",
+  "metadata": {
+    "id": "reporting.technical-weekly-update",
+    "version": "0.1.0",
+    "title": "Technical weekly update",
+    "status": "experimental"
+  },
+  "spec": {
+    "purpose": "Make current engineering work, evidence, risk, and next ownership decision-ready without measuring effort or attendance.",
+    "artifact_type": "technical_weekly_update",
+    "required_fields": [
+      "period",
+      "current_state",
+      "evidence",
+      "impact_or_risk",
+      "next_action",
+      "next_action.owner",
+      "next_action.due_date"
+    ],
+    "questions": [
+      {
+        "id": "period",
+        "field": "period",
+        "prompt": "어느 기간의 업데이트인가요? (예: 2026-07-20 ~ 2026-07-24)",
+        "required": true
+      },
+      {
+        "id": "current-state",
+        "field": "current_state",
+        "prompt": "현재 상태를 결과 중심으로 한두 문장으로 설명해 주세요.",
+        "required": true
+      },
+      {
+        "id": "evidence",
+        "field": "evidence",
+        "prompt": "주장을 확인할 수 있는 Jira 이슈, PR, 커밋, 대시보드 URL 중 하나를 남겨 주세요.",
+        "required": true
+      },
+      {
+        "id": "impact-or-risk",
+        "field": "impact_or_risk",
+        "prompt": "이 변화가 미치는 영향 또는 남은 리스크는 무엇인가요?",
+        "required": true
+      },
+      {
+        "id": "next-action",
+        "field": "next_action",
+        "prompt": "다음에 할 행동을 동사로 시작해 작성해 주세요.",
+        "required": true
+      },
+      {
+        "id": "next-action-owner",
+        "field": "next_action.owner",
+        "prompt": "다음 행동의 책임자 또는 팀을 적어 주세요.",
+        "required": true
+      },
+      {
+        "id": "next-action-due",
+        "field": "next_action.due_date",
+        "prompt": "다음 행동의 확인 예정일을 ISO 날짜로 적어 주세요.",
+        "required": true
+      },
+      {
+        "id": "safe-evidence",
+        "field": "evidence",
+        "prompt": "개인정보와 credential을 제거한 증거 참조로 다시 남겨 주세요.",
+        "required": false
+      }
+    ],
+    "checks": [
+      {
+        "id": "period-present",
+        "type": "present",
+        "field": "period",
+        "blocking": true,
+        "severity": "error",
+        "message": "업데이트 기간이 필요합니다.",
+        "question_id": "period"
+      },
+      {
+        "id": "current-state-present",
+        "type": "present",
+        "field": "current_state",
+        "blocking": true,
+        "severity": "error",
+        "message": "현재 상태가 필요합니다.",
+        "question_id": "current-state"
+      },
+      {
+        "id": "evidence-reference",
+        "type": "evidence_reference",
+        "field": "evidence",
+        "blocking": true,
+        "severity": "error",
+        "message": "검증 가능한 URL, Jira key, PR/커밋 참조가 필요합니다.",
+        "question_id": "evidence"
+      },
+      {
+        "id": "impact-or-risk-present",
+        "type": "present",
+        "field": "impact_or_risk",
+        "blocking": true,
+        "severity": "error",
+        "message": "영향 또는 리스크가 필요합니다.",
+        "question_id": "impact-or-risk"
+      },
+      {
+        "id": "next-action-present",
+        "type": "present",
+        "field": "next_action.action",
+        "blocking": true,
+        "severity": "error",
+        "message": "다음 행동이 필요합니다.",
+        "question_id": "next-action"
+      },
+      {
+        "id": "next-action-owner-present",
+        "type": "present",
+        "field": "next_action.owner",
+        "blocking": true,
+        "severity": "error",
+        "message": "다음 행동의 책임자가 필요합니다.",
+        "question_id": "next-action-owner"
+      },
+      {
+        "id": "next-action-due-date",
+        "type": "date_reference",
+        "field": "next_action.due_date",
+        "blocking": true,
+        "severity": "error",
+        "message": "다음 행동의 확인 예정일이 ISO 날짜로 필요합니다.",
+        "question_id": "next-action-due"
+      },
+      {
+        "id": "no-sensitive-data",
+        "type": "no_sensitive_data",
+        "field": "*",
+        "blocking": true,
+        "severity": "error",
+        "message": "개인정보와 credential은 artifact에서 제거해야 합니다.",
+        "question_id": "safe-evidence"
+      }
+    ],
+    "prohibited_inferences": [
+      "productivity",
+      "effort",
+      "attendance",
+      "employee_quality"
+    ]
+  }
+}

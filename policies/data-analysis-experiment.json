@@ -1,0 +1,234 @@
+{
+  "api_version": "evidence-workflows/v1",
+  "kind": "Policy",
+  "metadata": {
+    "id": "analysis.data-experiment",
+    "version": "0.1.0",
+    "title": "Data analysis experiment",
+    "status": "experimental"
+  },
+  "spec": {
+    "purpose": "Capture an analysis question, method, evidence, and next experiment without forcing unfinished work to pretend it has a final result.",
+    "artifact_type": "data_analysis_experiment",
+    "required_fields": [
+      "phase",
+      "experiment_question",
+      "hypothesis",
+      "data_scope",
+      "method",
+      "evidence",
+      "next_experiment",
+      "next_experiment.owner",
+      "next_experiment.due_date"
+    ],
+    "questions": [
+      {
+        "id": "phase",
+        "field": "phase",
+        "prompt": "실험 단계가 in_progress, completed, blocked 중 어디인가요?",
+        "required": true
+      },
+      {
+        "id": "experiment-question",
+        "field": "experiment_question",
+        "prompt": "이번 분석이 답하려는 질문은 무엇인가요?",
+        "required": true
+      },
+      {
+        "id": "hypothesis",
+        "field": "hypothesis",
+        "prompt": "검증하려는 가설을 적어 주세요.",
+        "required": true
+      },
+      {
+        "id": "data-scope",
+        "field": "data_scope",
+        "prompt": "사용한 데이터 범위와 제외 조건은 무엇인가요?",
+        "required": true
+      },
+      {
+        "id": "method",
+        "field": "method",
+        "prompt": "분석 방법과 핵심 비교 기준을 적어 주세요.",
+        "required": true
+      },
+      {
+        "id": "evidence",
+        "field": "evidence",
+        "prompt": "노트북, 쿼리, 대시보드, PR 등 재현 가능한 근거를 남겨 주세요.",
+        "required": true
+      },
+      {
+        "id": "result",
+        "field": "result",
+        "prompt": "실험이 끝났다면 관찰 결과와 한계를 적어 주세요.",
+        "required": true,
+        "when": {
+          "field": "phase",
+          "in": [
+            "completed",
+            "blocked"
+          ]
+        }
+      },
+      {
+        "id": "next-experiment",
+        "field": "next_experiment.action",
+        "prompt": "다음 실험 또는 확인 행동을 적어 주세요.",
+        "required": true
+      },
+      {
+        "id": "next-experiment-owner",
+        "field": "next_experiment.owner",
+        "prompt": "다음 실험의 책임자 또는 팀을 적어 주세요.",
+        "required": true
+      },
+      {
+        "id": "next-experiment-due",
+        "field": "next_experiment.due_date",
+        "prompt": "다음 실험의 확인 예정일을 ISO 날짜로 적어 주세요.",
+        "required": true
+      },
+      {
+        "id": "safe-evidence",
+        "field": "evidence",
+        "prompt": "개인정보와 credential을 제거한 근거 참조로 다시 남겨 주세요.",
+        "required": false
+      }
+    ],
+    "checks": [
+      {
+        "id": "phase-present",
+        "type": "present",
+        "field": "phase",
+        "blocking": true,
+        "severity": "error",
+        "message": "실험 단계가 필요합니다.",
+        "question_id": "phase"
+      },
+      {
+        "id": "phase-allowed",
+        "type": "allowed_value",
+        "field": "phase",
+        "values": [
+          "in_progress",
+          "completed",
+          "blocked"
+        ],
+        "blocking": true,
+        "severity": "error",
+        "message": "실험 단계는 in_progress, completed, blocked 중 하나여야 합니다.",
+        "question_id": "phase"
+      },
+      {
+        "id": "experiment-question-present",
+        "type": "present",
+        "field": "experiment_question",
+        "blocking": true,
+        "severity": "error",
+        "message": "분석 질문이 필요합니다.",
+        "question_id": "experiment-question"
+      },
+      {
+        "id": "hypothesis-present",
+        "type": "present",
+        "field": "hypothesis",
+        "blocking": true,
+        "severity": "error",
+        "message": "검증할 가설이 필요합니다.",
+        "question_id": "hypothesis"
+      },
+      {
+        "id": "data-scope-present",
+        "type": "present",
+        "field": "data_scope",
+        "blocking": true,
+        "severity": "error",
+        "message": "데이터 범위가 필요합니다.",
+        "question_id": "data-scope"
+      },
+      {
+        "id": "method-present",
+        "type": "present",
+        "field": "method",
+        "blocking": true,
+        "severity": "error",
+        "message": "분석 방법이 필요합니다.",
+        "question_id": "method"
+      },
+      {
+        "id": "evidence-reference",
+        "type": "evidence_reference",
+        "field": "evidence",
+        "blocking": true,
+        "severity": "error",
+        "message": "재현 가능한 URL, Jira key, PR, 또는 커밋 참조가 필요합니다.",
+        "question_id": "evidence"
+      },
+      {
+        "id": "result-required-when-complete",
+        "type": "conditional_present",
+        "field": "result",
+        "when": {
+          "field": "phase",
+          "in": [
+            "completed",
+            "blocked"
+          ]
+        },
+        "blocking": true,
+        "severity": "error",
+        "message": "완료 또는 blocked 단계에는 관찰 결과가 필요합니다.",
+        "question_id": "result"
+      },
+      {
+        "id": "next-experiment-present",
+        "type": "present",
+        "field": "next_experiment.action",
+        "blocking": true,
+        "severity": "error",
+        "message": "다음 실험 또는 확인 행동이 필요합니다.",
+        "question_id": "next-experiment"
+      },
+      {
+        "id": "next-experiment-owner-present",
+        "type": "present",
+        "field": "next_experiment.owner",
+        "blocking": true,
+        "severity": "error",
+        "message": "다음 실험의 책임자가 필요합니다.",
+        "question_id": "next-experiment-owner"
+      },
+      {
+        "id": "next-experiment-due-date",
+        "type": "date_reference",
+        "field": "next_experiment.due_date",
+        "blocking": true,
+        "severity": "error",
+        "message": "다음 실험의 확인 예정일이 ISO 날짜로 필요합니다.",
+        "question_id": "next-experiment-due"
+      },
+      {
+        "id": "no-sensitive-data",
+        "type": "no_sensitive_data",
+        "field": "*",
+        "blocking": true,
+        "severity": "error",
+        "message": "분석 artifact에는 개인정보와 credential이 없어야 합니다.",
+        "question_id": "safe-evidence"
+      }
+    ],
+    "progress_warning": {
+      "field": "phase",
+      "values": [
+        "in_progress"
+      ],
+      "message": "아직 진행 중인 실험입니다. 최종 결과 대신 다음 확인 행동을 명시한 상태로 유지합니다."
+    },
+    "prohibited_inferences": [
+      "analyst_productivity",
+      "effort",
+      "employee_quality"
+    ]
+  }
+}

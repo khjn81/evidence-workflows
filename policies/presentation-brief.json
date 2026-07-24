@@ -1,0 +1,120 @@
+{
+  "api_version": "evidence-workflows/v1",
+  "kind": "Policy",
+  "metadata": {
+    "id": "communication.presentation-brief",
+    "version": "0.1.0",
+    "title": "Decision-ready presentation brief",
+    "status": "experimental"
+  },
+  "spec": {
+    "purpose": "Clarify the decision, audience, claims, evidence, and explicit ask before a presentation is built.",
+    "artifact_type": "presentation_brief",
+    "required_fields": [
+      "decision",
+      "audience",
+      "key_claims",
+      "evidence",
+      "ask"
+    ],
+    "questions": [
+      {
+        "id": "decision",
+        "field": "decision",
+        "prompt": "이 발표가 끝났을 때 어떤 결정을 내려야 하나요?",
+        "required": true
+      },
+      {
+        "id": "audience",
+        "field": "audience",
+        "prompt": "핵심 청중과 그들의 현재 관심사는 무엇인가요?",
+        "required": true
+      },
+      {
+        "id": "key-claims",
+        "field": "key_claims",
+        "prompt": "청중이 기억해야 할 핵심 주장을 적어 주세요.",
+        "required": true
+      },
+      {
+        "id": "evidence",
+        "field": "evidence",
+        "prompt": "각 주장을 확인할 수 있는 데이터나 원문 참조를 남겨 주세요.",
+        "required": true
+      },
+      {
+        "id": "ask",
+        "field": "ask",
+        "prompt": "청중에게 요청할 행동, 예산, 결정 중 무엇인가요?",
+        "required": true
+      },
+      {
+        "id": "safe-evidence",
+        "field": "evidence",
+        "prompt": "개인정보와 credential을 제거한 근거 참조로 다시 남겨 주세요.",
+        "required": false
+      }
+    ],
+    "checks": [
+      {
+        "id": "decision-present",
+        "type": "present",
+        "field": "decision",
+        "blocking": true,
+        "severity": "error",
+        "message": "발표가 지원할 결정이 필요합니다.",
+        "question_id": "decision"
+      },
+      {
+        "id": "audience-present",
+        "type": "present",
+        "field": "audience",
+        "blocking": true,
+        "severity": "error",
+        "message": "핵심 청중이 필요합니다.",
+        "question_id": "audience"
+      },
+      {
+        "id": "claims-present",
+        "type": "present",
+        "field": "key_claims",
+        "blocking": true,
+        "severity": "error",
+        "message": "핵심 주장이 필요합니다.",
+        "question_id": "key-claims"
+      },
+      {
+        "id": "evidence-reference",
+        "type": "evidence_reference",
+        "field": "evidence",
+        "blocking": true,
+        "severity": "error",
+        "message": "핵심 주장을 확인할 수 있는 근거 참조가 필요합니다.",
+        "question_id": "evidence"
+      },
+      {
+        "id": "ask-present",
+        "type": "present",
+        "field": "ask",
+        "blocking": true,
+        "severity": "error",
+        "message": "청중에게 요청할 다음 결정이나 행동이 필요합니다.",
+        "question_id": "ask"
+      },
+      {
+        "id": "no-sensitive-data",
+        "type": "no_sensitive_data",
+        "field": "*",
+        "blocking": true,
+        "severity": "error",
+        "message": "발표 근거에 개인정보와 credential이 없어야 합니다.",
+        "question_id": "safe-evidence"
+      }
+    ],
+    "prohibited_inferences": [
+      "speaker_confidence",
+      "employee_quality",
+      "effort"
+    ]
+  }
+}

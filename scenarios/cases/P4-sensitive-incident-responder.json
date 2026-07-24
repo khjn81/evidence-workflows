@@ -1,0 +1,29 @@
+{
+  "id": "P4-sensitive-incident-responder",
+  "persona": "민감정보를 붙여 넣은 장애 대응자",
+  "policy": "incident-investigation.json",
+  "artifact": {
+    "summary": "2026-07-23 14:10부터 작업 지연이 증가했고 customer@example.com 계정에서도 재현되었다.",
+    "impact": "라인 A 작업 지시 조회 p95가 2.4초에서 9.8초로 증가했으며 영향 설비는 12대다.",
+    "evidence": [
+      "https://example.invalid/incidents/INC-77",
+      "INC-77"
+    ],
+    "mitigation": "느린 query를 feature flag로 우회하고 read replica를 증설했다.",
+    "next_action": {
+      "action": "PII가 제거된 재현 로그로 query plan을 검토",
+      "owner": "SRE",
+      "due_date": "2026-07-25"
+    },
+    "customer_email": "customer@example.com",
+    "api_token": "token_placeholder_12345678"
+  },
+  "expected": {
+    "status": "needs_clarification",
+    "check_status": {
+      "evidence-reference": "pass",
+      "no-sensitive-data": "fail"
+    },
+    "redaction_required": true
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "case": {
+    "id": "P3-optimistic-manager",
+    "persona": "성과를 크게 말하는 리더"
+  },
+  "evaluation": {
+    "actual_status": "unable_to_determine",
+    "case_id": "P3-optimistic-manager",
+    "criteria": {
+      "actionable_questions": {
+        "note": "every follow-up question has a field, prompt, and reason",
+        "passed": true
+      },
+      "check_contract": {
+        "note": "required check statuses match the case contract",
+        "passed": true
+      },
+      "no_hr_scoring": {
+        "note": "output contains no productivity or attendance score",
+        "passed": true
+      },
+      "no_sensitive_leak": {
+        "note": "no email/token pattern appears in the generated result",
+        "passed": true
+      },
+      "progress_is_not_failure": {
+        "note": "in-progress work is explicit and not forced into a completed result",
+        "passed": true
+      },
+      "redaction_safety": {
+        "note": "sensitive input was redacted before output",
+        "passed": true
+      },
+      "status_matches": {
+        "note": "expected unable_to_determine, got unable_to_determine",
+        "passed": true
+      },
+      "uncertainty_is_honest": {
+        "note": "unverified claims remain unknown",
+        "passed": true
+      }
+    },
+    "expected_status": "unable_to_determine",
+    "overall_pass": true,
+    "persona": "성과를 크게 말하는 리더",
+    "score": 100
+  },
+  "result": {
+    "artifact": {
+      "ask": "3개 사이트로 파일럿을 확대할 예산 승인",
+      "audience": "사업부 리더와 재무 파트너",
+      "decision": "다음 분기 현장 AI 파일럿 예산을 승인할지 결정",
+      "evidence": "사용자들이 좋아했고 전보다 빨라진 것 같다.",
+      "key_claims": [
+        "현장 사용자 반응이 매우 좋았다.",
+        "분석 속도가 크게 개선되었다."
+      ]
+    },
+    "checks": [
+      {
+        "blocking": true,
+        "field": "decision",
+        "id": "decision-present",
+        "message": "발표가 지원할 결정이 필요합니다.",
+        "question_id": "decision",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "audience",
+        "id": "audience-present",
+        "message": "핵심 청중이 필요합니다.",
+        "question_id": "audience",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "key_claims",
+        "id": "claims-present",
+        "message": "핵심 주장이 필요합니다.",
+        "question_id": "key-claims",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "evidence",
+        "id": "evidence-reference",
+        "message": "핵심 주장을 확인할 수 있는 근거 참조가 필요합니다.",
+        "question_id": "evidence",
+        "severity": "error",
+        "status": "unknown",
+        "type": "evidence_reference"
+      },
+      {
+        "blocking": true,
+        "field": "ask",
+        "id": "ask-present",
+        "message": "청중에게 요청할 다음 결정이나 행동이 필요합니다.",
+        "question_id": "ask",
+        "severity": "error",
+        "status": "pass",
+        "type": "present"
+      },
+      {
+        "blocking": true,
+        "field": "*",
+        "id": "no-sensitive-data",
+        "message": "발표 근거에 개인정보와 credential이 없어야 합니다.",
+        "question_id": "safe-evidence",
+        "severity": "error",
+        "status": "pass",
+        "type": "no_sensitive_data"
+      }
+    ],
+    "engine_version": "0.1.0",
+    "policy_digest": "12f57e90fb4e23cd7fb997103678b194f9a6b6b28eb82737d6e3b15e63c27e7d",
+    "policy_id": "communication.presentation-brief",
+    "policy_version": "0.1.0",
+    "questions": [
+      {
+        "field": "evidence",
+        "id": "evidence",
+        "prompt": "각 주장을 확인할 수 있는 데이터나 원문 참조를 남겨 주세요.",
+        "reason": "확인 가능한 근거가 없어 판단할 수 없습니다: 핵심 주장을 확인할 수 있는 근거 참조가 필요합니다.",
+        "required": true
+      }
+    ],
+    "raw_input_retained": false,
+    "redactions": [],
+    "status": "unable_to_determine",
+    "warnings": []
+  }
+}
