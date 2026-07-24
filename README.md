@@ -24,6 +24,34 @@ The policy is the team’s contract. The engine is not allowed to invent facts o
 
 The repository also includes a policy-authoring interview. It helps a leader or team turn an implicit standard into a reviewable contract before anyone writes a pack. It never silently compiles that conversation into a deployable policy.
 
+## The value thesis
+
+The biggest opportunity is not another worklog template. It is an open contract layer between human work and operational systems:
+
+```text
+implicit team standard
+  → public policy
+  → guided evidence interview
+  → deterministic result with honest uncertainty
+  → reusable artifact for a decision or connector
+```
+
+If this project stays a collection of checklists, its value is modest. If it becomes a shared protocol for defining, completing, evaluating, and safely routing evidence-bearing work artifacts, it can become useful infrastructure across engineering, data, research, operations, incidents, and decision-making workflows.
+
+The current release is an MVP, not that infrastructure yet. It has a trustworthy kernel, policy packs, synthetic evaluations, and a dry-run connector; it does not yet have broad adoption, production connectors, a hosted service, or evidence that it improves real organizations. The path from “interesting tool” to “high-leverage open source” is described in [`docs/value-and-roadmap.md`](docs/value-and-roadmap.md).
+
+## Who can create value with it
+
+| User | Value created |
+|---|---|
+| Contributor | Completes a useful update with less guesswork about hidden expectations |
+| Team lead | Makes decision criteria explicit without turning them into a people score |
+| Platform/automation engineer | Reuses the same policy and result contract across Jira, GitHub, chat, CI, and internal tools |
+| Domain expert | Publishes a reviewed policy pack for incidents, experiments, analysis, or reviews |
+| Open-source maintainer | Contributes checks, fixtures, connectors, translations, and conformance tests |
+
+The long-term moat is not a proprietary prompt. It is the combination of public policy packs, versioned semantics, realistic fixtures, connector interoperability, and a trust boundary that keeps unknown facts unknown.
+
 ## Quick start
 
 The runtime has no third-party dependency. Python 3.9 or newer is required.

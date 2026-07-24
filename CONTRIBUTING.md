@@ -2,6 +2,8 @@
 
 Thanks for helping improve `evidence-workflows`.
 
+The highest-leverage contributions are domain policy packs, conformance fixtures, safe read-only connectors, accessibility/localization improvements, and adversarial tests. See [`docs/value-and-roadmap.md`](docs/value-and-roadmap.md) for the project thesis and roadmap.
+
 ## Before opening a pull request
 
 - Run `PYTHONPATH=src python3 -m unittest discover -s tests -v`.

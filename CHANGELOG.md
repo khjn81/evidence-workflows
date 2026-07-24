@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Added the project value thesis, positioning, roadmap, success metrics, risks, and high-leverage contribution paths.
+
 ## 0.1.0 — 2026-07-24
 
 - Added the deterministic policy bundle and typed check engine.
